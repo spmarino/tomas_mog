@@ -1,0 +1,22 @@
+.cartDiv{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.card {
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px;
+    border: 2px solid rgb(1, 1, 75);
+    
+}
+.cardImg{
+    width: 50%;
+    height: 200px;
+}

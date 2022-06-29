@@ -1,30 +1,36 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import { getOneFetch } from '../../helpers/getFetch';
-import { ItemDetail } from '../ItemDetailConten/ItemDetail';
+import { getOneFetch } from "../../helpers/getFetch";
+import { ItemDetail } from "../ItemDetailConten/ItemDetail";
 
-import './ItemDetailContent.css';
+import { getDoc, getFirestore, doc } from "firebase/firestore";
 
+import "./ItemDetailContent.css";
 
 const ItemDetailContent = () => {
-    const [producto, setProducto] = useState ({})
-    const {id} = useParams()
+  const [producto, setProducto] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
 
-    useEffect(() => {
-        getOneFetch(id)
-            .then ((resp) => setProducto(resp))
-            .catch ((err) => console.log(err))
-        
-    }, [])
-    
-    
-    return (
-        <>
-        <h2>Detalle de producto</h2>
-        <ItemDetail producto = {producto} />
-        </>
-    )
-}
+  useEffect(() => {
+    const dataBase = getFirestore();
+    const queryProducto = doc(dataBase, "productos", id);
+    getDoc(queryProducto)
+      .then((resp) => setProducto({ id: resp.id, ...resp.data() }))
+      .catch((error) => console.log(error))
+      .finally(setLoading(false));
+  }, [id]);
+
+  return (
+    <>
+      {loading ? 
+        <p>...Cargando</p>
+       : 
+        <ItemDetail producto={producto} />
+      }
+    </>
+  );
+};
 
 export default ItemDetailContent;

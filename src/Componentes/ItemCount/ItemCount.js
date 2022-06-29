@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import {Link} from 'react';
 
 function ItemCount({stock, initial, onAdd}) {
     const [count, setCount] = useState (initial)
+    const [show, setShow] = useState(true)
     
 
     function suma() {
@@ -18,14 +20,34 @@ function ItemCount({stock, initial, onAdd}) {
         onAdd (count)
     }
 
-    return (
-        <div>
-            <p>{count}</p>
-            <button onClick={suma}>Sumar</button>
-            <button onClick={resta}>Quitar</button>
-            <button onClick={agregar}>Agregar</button>
-        </div>
-    )
+    if(show&&stock>0){
+        return(<div>
+            <div className="Counter"> <button type="button" onClick={resta}>
+            -
+            </button>
+            <p className="Cantidad">Cantidad {count}</p>
+            
+            <button type="button" onClick={suma}>
+            +
+            </button></div>
+            <button onClick={agregar}>Agregar al Carrito</button>
+        
+            </div>)
+        }
+        
+        if(stock===0){
+            return(
+            <p>Sin unidades disponibles</p>
+            )
+        }
+        
+        if (!show && stock>0){
+            return(<Link to="/cart"><button>Ir al carrito</button></Link>)
+        }
+        
+
+
+    
 }
 
 
