@@ -1,18 +1,35 @@
 import { createContext, useState } from "react";
 
+import Toastify from 'toastify-js'
+
 
 export const CartContext = createContext( [] );
 
-const CartContextProvider = ({children}) => {
+const CartContextProvider = ({ children }) => {
 
-    const [ cartList, serCartList] = useState( [] );
+    const [ cartList, serCartList ] = useState( [] );
 
     const AddToCart = (producto, count) =>{
         if (InCart(producto.id)){
-            alert ("El producto ya se encuentra en el carrito");
+            Toastify({
+                text: "Este producto ya se encuentra en el carrito",
+                duration: 3000,
+                style: {            
+                    background: "linear-gradient(to right, #830202, #63020296 )",
+                },
+            }).showToast();
         }else {
             serCartList( [...cartList, {producto, count}] );
-            alert ("Agregado al carrito");
+            setTimeout(() => {
+                Toastify({
+                    text: "Agregado al carrito",
+                    className: "info",
+                    position: 'right',
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
+            }, 100);
         }
     };
 
@@ -29,18 +46,21 @@ const CartContextProvider = ({children}) => {
         return cartList && cartList.some((i) => i.producto.id === id);
     };
 
-    const IconCart = () =>{
+    const TotalProducts = () =>{   //IconCart
         return cartList.reduce ((acum, i) => acum + i.count, 0)
     }
 
-    const TotalProducts = () =>{
-        return cartList.reduce ((acum, i) => acum + i.count * i.producto.price, 0)
+    const TotalPrice = () => { //TotalProducts
+        return cartList.reduce((acum, i) => acum + (i.count * i.producto.price) ,0)
+    }
+
+    const Pay = (producto) => {
+        return (producto.id)
     }
 
 
-
     return (
-        <CartContext.Provider value={{AddToCart, cartList, EmptyCart, DelItem, TotalProducts, IconCart}}>
+        <CartContext.Provider value={{AddToCart, cartList, EmptyCart, DelItem, TotalProducts, TotalPrice, InCart, Pay}}>
             {children}
         </CartContext.Provider>
     );

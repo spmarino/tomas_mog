@@ -8,10 +8,10 @@ import ItemCount from '../ItemCount/ItemCount'
 function CartWidgets() {
     return (
         <>
-        <img src={CarritoGris} className="carrito" alt="carrito" />
-        <Nav.Link href="/cart">
-            <Cart />
-        </Nav.Link>
+            <img src={CarritoGris} className="carrito" alt="carrito" />
+            <Nav.Link href="/cart">
+                <Cart />
+            </Nav.Link>           
         </>
     )
 }

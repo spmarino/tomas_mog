@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import {Link} from 'react';
+import './ItemCount.css';
 
 function ItemCount({stock, initial, onAdd}) {
     const [count, setCount] = useState (initial)
@@ -20,34 +21,23 @@ function ItemCount({stock, initial, onAdd}) {
         onAdd (count)
     }
 
-    if(show&&stock>0){
-        return(<div>
-            <div className="Counter"> <button type="button" onClick={resta}>
-            -
-            </button>
-            <p className="Cantidad">Cantidad {count}</p>
-            
-            <button type="button" onClick={suma}>
-            +
-            </button></div>
-            <button onClick={agregar}>Agregar al Carrito</button>
-        
-            </div>)
-        }
-        
-        if(stock===0){
-            return(
-            <p>Sin unidades disponibles</p>
-            )
-        }
-        
-        if (!show && stock>0){
-            return(<Link to="/cart"><button>Ir al carrito</button></Link>)
-        }
-        
-
-
-    
+    if(show && stock > 0){
+        return(
+            <div className='divCounter'>
+                <div className="Counter"> 
+                    <button type="button" onClick={resta} className='bnRed button'>
+                    -
+                    </button>
+                    <p className="Cantidad"> {count}</p>
+                    
+                    <button type="button" onClick={suma} className='bnGreen button'>
+                    +
+                    </button>
+                </div>
+                <button onClick={agregar} className='btn-success' >Agregar al Carrito</button>
+            </div>
+        )
+    }
 }
 
 

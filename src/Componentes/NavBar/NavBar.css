@@ -4,12 +4,29 @@
     flex-direction: row;
     justify-content: space-around;
 }
+.navbar{
+    background-color: rgb(3, 3, 43);
+    color: white;
+}
 .link{
     padding: 4px;
     text-decoration: none;
     color: white;
     text-align: center;
     margin-top: 10px;
-    
+    font-size: 1rem;
 }
-
+.link:hover{
+    font-size: 1.5rem;
+}
+.link:hover{
+    color: rgb(33, 172, 33)
+}
+.carrito{
+    width: 50px;
+    height: 40px;
+}
+img{
+    height:40px;
+    width:40px;
+}

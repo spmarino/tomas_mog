@@ -1,29 +1,31 @@
-import { useContext } from "react"
+import { createContext, useContext } from "react"
 import { CartContext } from '../CartContext/CartContex'
 import { Card, Button } from 'react-bootstrap';
 import ItemCount from "../ItemCount/ItemCount";
+import './CartItem.css';
 
 const CartItem = ({producto}) => {
-    const { DelItem } = useContext(CartContext)
-    const {name, categoria, img, price, id} = producto
+    const { DelItem, TotalPrice } = useContext(CartContext)
+    const {name, categoria, img, price, id, count} = producto
+    
 
     return (
         <>
-            <Card className="divCard">
-                <Card.Body className='card'>
-                    <Card.Img className="cardImg" variant="top" src={img} />
-                    <Card.Title>{`${name} - ${categoria}`}</Card.Title>
-                        <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-                        </Card.Text>
-                        <Card.Text>
+            <div className='container'>
+                <img className='img' src={img} />
+                <div className='infoCart'>
+                    <div classNmae='infoCartDos'>
+                        <p>{`${name} - ${categoria}`}</p>
+                        <p>
                             $ {price}
-                        </Card.Text>
-                        <button onClick={() => DelItem(id)} >Terminar compra</button>
-                        <button onClick={() => DelItem(id)} >Borrar producto</button>
-                </Card.Body>
-            </Card>
+                        </p>
+                        <p>
+                            Cantidad {count}
+                        </p>
+                        <Button onClick={() => DelItem(id)} >Borrar producto</Button>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

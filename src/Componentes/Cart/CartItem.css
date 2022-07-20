@@ -1,22 +1,21 @@
-.cartDiv{
+.container{
     width: 100%;
     height: auto;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    border: 1px solid rgb(3, 3, 43);
+    /*justify-content: space-around;*/
 }
-.card {
-    width: 400px;
-    height: 200px;
+img{
+    width: 100px;
+    height: 100px;
+}
+.infoCart{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 10px;
-    border: 2px solid rgb(1, 1, 75);
-    
+    flex: column;
 }
-.cardImg{
-    width: 50%;
-    height: 200px;
+button{
+    width: auto;
+    height: auto;
 }
+

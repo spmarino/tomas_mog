@@ -1,0 +1,21 @@
+.form{
+    margin-top: 10px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+.containerForm{
+    max-width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 4px;
+}
+input, button{
+    border: 1px solid rgb(3, 3, 43);
+}
+button{
+    color: white;
+    background-color: rgb(3, 3, 43);
+}
